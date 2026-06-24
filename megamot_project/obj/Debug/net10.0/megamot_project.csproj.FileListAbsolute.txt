@@ -1,0 +1,14 @@
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\bin\Debug\net10.0\megamot_project.exe
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\bin\Debug\net10.0\megamot_project.deps.json
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\bin\Debug\net10.0\megamot_project.runtimeconfig.json
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\bin\Debug\net10.0\megamot_project.dll
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\bin\Debug\net10.0\megamot_project.pdb
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\megamot_project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\megamot_project.AssemblyInfoInputs.cache
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\megamot_project.AssemblyInfo.cs
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\megamot_project.csproj.CoreCompileInputs.cache
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\megamot_project.dll
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\refint\megamot_project.dll
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\megamot_project.pdb
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\megamot_project.genruntimeconfig.cache
+C:\Users\Yonil\kodkod_megamot_11\megamot_project\megamot_project\obj\Debug\net10.0\ref\megamot_project.dll
