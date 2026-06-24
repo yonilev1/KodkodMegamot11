@@ -195,7 +195,25 @@ class ReportAnalyzer
 
     static double CalculateAverage(double[] score, int numOfReports)
     {
-        return score.Sum() / numOfReports;
+        double sum = 0;
+        for(int i = 0; i < numOfReports; i++)
+        {
+            sum += score[i];
+        }
+        return sum / numOfReports;
+    }
+
+    static double FindMaxScore(double[] score, int numOfReports)
+    {
+        double maxScore = 0;
+        for (int i = 0; i < numOfReports; i++)
+        {
+            if (score[i] > maxScore)
+            {
+                maxScore = score[i];
+            }
+        }
+        return maxScore;
     }
     static void Main()
     {
@@ -215,6 +233,7 @@ class ReportAnalyzer
         int procreports = ProcessReports(unitName, reportType, priority, score, status, data);
         Console.WriteLine($"Processing complete.\nValid records: {procreports}.\nInvalid records: {data.Length - procreports}");
         Console.WriteLine(CalculateAverage(score, procreports));
+        Console.WriteLine(FindMaxScore(score, procreports));
 
     }
 } 
