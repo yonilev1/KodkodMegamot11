@@ -357,48 +357,8 @@ class ReportAnalyzer
 
     static void DisplayAverageByPriority(int[] priority, double[] score, int numOfReports)
     {
-        Console.WriteLine($"===Display Average Score for each Priority===");
-        double average1 = 0;
-        double average2 = 0;
-        double average3 = 0;
-        double average4 = 0;
-        double average5 = 0;
-        int count1 = 0;
-        int count2 = 0;
-        int count3 = 0;
-        int count4 = 0;
-        int count5 = 0;
-
-        for (int i = 0; i < numOfReports; i++)
-        {
-            if (priority[i] == 1)
-            {
-                average1 += score[i];
-                count1 += 1;
-            }
-            else if (priority[i] == 2)
-            {
-                average2 += score[i];
-                count2 += 1;
-            }
-            else if (priority[i] == 3)
-            {
-                average3 += score[i];
-                count3 += 1;
-            }
-            else if (priority[i] == 4)
-            {
-                average4 += score[i];
-                count4 += 1;
-            }
-            else
-            {
-                average5 += score[i];
-                count5 += 1;
-            }
-        }
-
         Console.WriteLine($"""
+            ===Display Average Score for each Priority===
             Priority 1 Average Score: {CalculateAverageScoreByPriority(priority, 1, score, numOfReports)}
             Priority 2 Average Score: {CalculateAverageScoreByPriority(priority, 2, score, numOfReports)}
             Priority 3 Average Score: {CalculateAverageScoreByPriority(priority, 3, score, numOfReports)}

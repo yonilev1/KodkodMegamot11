@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("megamot_project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a91ae50c7de1c7639d84b2cac687eb10dd3129a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ce470150ce87ef32613729e2be449832d83c8e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("megamot_project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("megamot_project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
