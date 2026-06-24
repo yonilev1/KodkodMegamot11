@@ -6,17 +6,17 @@ using System.Net.NetworkInformation;
 namespace megamot11;
 enum ReportType
 {
-    COLLECT,
-    ANALYZE,
-    RECON,
-    INTEL
+    Collect,
+    Analyze,
+    Recon,
+    Intel
 }
 
 enum Status
 {
-    PENDING,
-    APPROVED,
-    REJECTED
+    Pending,
+    Approved,
+    Rejected
 }
 
 class ReportAnalyzer
@@ -72,8 +72,7 @@ class ReportAnalyzer
     static bool validateReport(string report)
     {
         report = report.Trim();
-        report = report.ToUpper();
-        if (!Enum.TryParse(report, out ReportType reportInEnum))
+        if (!Enum.TryParse<ReportType>(report, true, out ReportType reportInEnum))
         {
             return false;
         }
@@ -85,8 +84,7 @@ class ReportAnalyzer
     static bool validateStatus(string status)
     {
         status = status.Trim();
-        status = status.ToUpper();
-        if (!Enum.TryParse(status, out Status statusInEnum))
+        if (!Enum.TryParse<Status>(status, true, out Status statusInEnum))
         {
             return false;
         }
@@ -120,8 +118,9 @@ class ReportAnalyzer
     static ReportType getEnumReportType(string rt)
     {
         rt = rt.Trim();
-        rt = rt.ToUpper();
-        return Enum.Parse<ReportType>(rt);
+        ReportType reportTypeInEnum;
+        Enum.TryParse<ReportType>(rt, true, out reportTypeInEnum);
+        return reportTypeInEnum;
     }
 
 
@@ -143,8 +142,9 @@ class ReportAnalyzer
     static Status getEnumStatus(string st)
     {
         st = st.Trim();
-        st = st.ToUpper();
-        return Enum.Parse<Status>(st);
+        Status statusInEnum;
+        Enum.TryParse<Status>(st, true, out statusInEnum);
+        return statusInEnum;
     }
 
 
@@ -263,7 +263,7 @@ class ReportAnalyzer
         Console.WriteLine(CalculateAverage(score, procreports));
         Console.WriteLine(FindMaxScore(score, procreports));
         Console.WriteLine(FindMinScore(score, procreports));
-        Console.WriteLine(CountByStatus(Status.REJECTED, status, procreports));
+        Console.WriteLine(CountByStatus(Status.Rejected, status, procreports));
 
     }
 } 
