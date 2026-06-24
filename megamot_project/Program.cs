@@ -229,6 +229,20 @@ class ReportAnalyzer
         return minScore;
     }
 
+
+    static int CountByStatus(Status stauts, Status[] statusArray, int numOfReports)
+    {
+        int count = 0;
+        for (int i = 0; i < numOfReports; i++)
+        {
+            if (statusArray[i] == stauts)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
     static void Main()
     {
         const string path = "C:\\Users\\Yonil\\kodkod_megamot_11\\megamot_project\\megamot_project\\reports.txt";
@@ -249,6 +263,7 @@ class ReportAnalyzer
         Console.WriteLine(CalculateAverage(score, procreports));
         Console.WriteLine(FindMaxScore(score, procreports));
         Console.WriteLine(FindMinScore(score, procreports));
+        Console.WriteLine(CountByStatus(Status.REJECTED, status, procreports));
 
     }
 } 
