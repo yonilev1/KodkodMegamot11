@@ -193,6 +193,7 @@ class ReportAnalyzer
     }
 
 
+    //calculate avarage score
     static double CalculateAverage(double[] score, int numOfReports)
     {
         double sum = 0;
@@ -203,6 +204,8 @@ class ReportAnalyzer
         return sum / numOfReports;
     }
 
+
+    //find max score
     static double FindMaxScore(double[] score, int numOfReports)
     {
         double maxScore = 0;
@@ -216,6 +219,8 @@ class ReportAnalyzer
         return maxScore;
     }
 
+
+    //find min score
     static double FindMinScore(double[] score, int numOfReports)
     {
         double minScore = 100;
@@ -230,12 +235,28 @@ class ReportAnalyzer
     }
 
 
+    //count how many by status
     static int CountByStatus(Status stauts, Status[] statusArray, int numOfReports)
     {
         int count = 0;
         for (int i = 0; i < numOfReports; i++)
         {
             if (statusArray[i] == stauts)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    //count how many by type
+    static int CountByType(ReportType reporttype, ReportType[] reportTypes, int numOfReports)
+    {
+        int count = 0;
+        for (int i = 0; i < numOfReports; i++)
+        {
+            if (reportTypes[i] == reporttype)
             {
                 count++;
             }
@@ -264,6 +285,7 @@ class ReportAnalyzer
         Console.WriteLine(FindMaxScore(score, procreports));
         Console.WriteLine(FindMinScore(score, procreports));
         Console.WriteLine(CountByStatus(Status.Rejected, status, procreports));
+        Console.WriteLine(CountByType(ReportType.Recon, reportType, procreports));
 
     }
 } 
