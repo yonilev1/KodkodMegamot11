@@ -249,6 +249,8 @@ class ReportAnalyzer
         return count;
     }
 
+
+    //display basic stats
     static void DisplayBasicStatistics(double[] score, int numOfReports)
     {
         Console.WriteLine($"""
@@ -257,6 +259,20 @@ class ReportAnalyzer
             Average Score: {CalculateAverage(score, numOfReports):F2}
             Max Score: {FindMaxScore(score, numOfReports)}
             Min Score: {FindMinScore(score, numOfReports)}
+
+            """);
+    }
+
+
+    static void sCounts(Status[] statusArray, int numOfReports)
+    {
+        Console.WriteLine($"""
+            ===Display Count Status===
+            There are 3 statues:
+            Status Approved: {CountByStatus(Status.Approved, statusArray, numOfReports)}
+            Status Pending: {CountByStatus(Status.Pending, statusArray, numOfReports)}
+            Status Rejected: {CountByStatus(Status.Rejected, statusArray, numOfReports)}
+
             """);
     }
 
@@ -293,7 +309,7 @@ class ReportAnalyzer
         int procreports = ProcessReports(unitName, reportType, priority, score, status, data);
         Console.WriteLine($"Processing complete.\nValid records: {procreports}.\nInvalid records: {data.Length - procreports}");
         DisplayBasicStatistics(score, procreports);
-        Console.WriteLine(CountByStatus(Status.Rejected, status, procreports));
+        sCounts(status, procreports);
         Console.WriteLine(CountByType(ReportType.Recon, reportType, procreports));
 
     }
