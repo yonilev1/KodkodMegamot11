@@ -64,7 +64,19 @@ class ReportAnalyzer
             return false;
         }
 
-        return validateReport(line[1]) && validatePriority(line[2]) && validateScore(line[3]) && validateStatus(line[4]);
+        return validateUnit(line[0]) && validateReport(line[1]) && validatePriority(line[2]) && validateScore(line[3]) && validateStatus(line[4]);
+    }
+
+
+    //validate unit - helper function
+    static bool validateUnit(string unit)
+    {
+        unit = unit.Trim();
+        if(unit == "")
+        {
+            return false;
+        }
+        return true;
     }
 
 
@@ -153,7 +165,7 @@ class ReportAnalyzer
     {
         if (validateData(line))
         {
-            unitName[index] = line[0];
+            unitName[index] = line[0].Trim();
             reportType[index] = getEnumReportType(line[1]);
             priority[index] = getIntPriority(line[2]);
             score[index] = getDoubleScore (line[3]);
