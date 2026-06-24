@@ -339,6 +339,7 @@ class ReportAnalyzer
     }
 
 
+    //helper func for the logic to calculate average by priority
     static string CalculateAverageScoreByPriority(int[] priorityList, int priority, double[] score, int numOfReports)
     {
         double average = 0;
@@ -355,6 +356,7 @@ class ReportAnalyzer
     }
 
 
+    //display the average score by proirity
     static void DisplayAverageByPriority(int[] priority, double[] score, int numOfReports)
     {
         Console.WriteLine($"""
