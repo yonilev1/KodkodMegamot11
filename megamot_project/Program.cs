@@ -180,26 +180,13 @@ class ReportAnalyzer
     static int ProcessReports(string[] unitName, ReportType[] reportType, int[] priority, double[] score, Status[] status,string[] data)
     {
         string[][] spliteLines = splitTheData(data);
-        int index = 0;
+        int count = 0;
         foreach (string[] line in spliteLines)
         {
-            bool did_add = addLineToStatisticsDb(index, line, unitName, reportType, priority, score, status);
+            bool did_add = addLineToStatisticsDb(count, line, unitName, reportType, priority, score, status);
             if (did_add)
             {
-                index++;
-            }
-        }
-
-        int count = 0;
-        for(int i = 0; i < unitName.Length; i++)
-        {
-            if (unitName[i] != null)
-            {
                 count++;
-            }
-            else
-            {
-                break;
             }
         }
         return count;
@@ -324,28 +311,48 @@ class ReportAnalyzer
     //display hgiest score with approved status
     static void DisplayHighestPriorityApproved(string[] unitName, ReportType[] reportType, int[] priority, double[] score, Status[] status, int numOfReports)
     {
-        int maxPriorityindex = 0;
+        int maxPriorityindex = -1;
         Console.WriteLine($"===Display Approved status And Highes Priority===");
         for (int i = 0; i < numOfReports; i++)
         {
             if (status[i] == Status.Approved)
             {
-               if (priority[i] >= priority[maxPriorityindex])
+               if (maxPriorityindex == -1 || priority[i] >= priority[maxPriorityindex])
                 {
                     maxPriorityindex = i;
                 }
             }
         }
-        Console.WriteLine($"""
-            Unit Name: {unitName[maxPriorityindex]},
-            Report Type: {reportType[maxPriorityindex]},
-            Priority: {priority[maxPriorityindex]},
-            Score: {score[maxPriorityindex]}
+        if (maxPriorityindex != -1)
+        { Console.WriteLine($"""
+                Unit Name: {unitName[maxPriorityindex]},
+                Report Type: {reportType[maxPriorityindex]},
+                Priority: {priority[maxPriorityindex]},
+                Score: {score[maxPriorityindex]}
 
-            """);
+                """); }
+        else
+        {
+            Console.WriteLine("No approved reports found.\n");
+        }
 
     }
 
+
+    static string CalculateAverageScoreByPriority(int[] priorityList, int priority, double[] score, int numOfReports)
+    {
+        double average = 0;
+        double count = 0;
+        for (int i = 0; i < numOfReports; i++)
+        {
+            if (priorityList[i] == priority)
+            {
+                average += score[i];
+                count += 1;
+            }
+        }
+        return (count > 0) ? (average / count).ToString("F2") : "No reports."; 
+    }
 
 
     static void DisplayAverageByPriority(int[] priority, double[] score, int numOfReports)
@@ -390,12 +397,13 @@ class ReportAnalyzer
                 count5 += 1;
             }
         }
+
         Console.WriteLine($"""
-            Priority 1 Average Score: {(average1 / count1):F2}
-            Priority 2 Average Score: {(average2 / count2):F2}
-            Priority 3 Average Score: {(average3 / count3):F2}
-            Priority 4 Average Score: {(average4 / count4):F2}
-            Priority 5 Average Score: {(average5 / count5):F2}
+            Priority 1 Average Score: {CalculateAverageScoreByPriority(priority, 1, score, numOfReports)}
+            Priority 2 Average Score: {CalculateAverageScoreByPriority(priority, 2, score, numOfReports)}
+            Priority 3 Average Score: {CalculateAverageScoreByPriority(priority, 3, score, numOfReports)}
+            Priority 4 Average Score: {CalculateAverageScoreByPriority(priority, 4, score, numOfReports)}
+            Priority 5 Average Score: {CalculateAverageScoreByPriority(priority, 5, score, numOfReports)}
 
             """);
     }
@@ -415,12 +423,12 @@ class ReportAnalyzer
             Console.WriteLine($"Error: File {Path.GetFileName(path)} not found.");
             return;
         }
-        int procreports = ProcessReports(unitName, reportType, priority, score, status, data);
-        Console.WriteLine($"Processing complete.\nValid records: {procreports}.\nInvalid records: {data.Length - procreports}");
-        DisplayBasicStatistics(score, procreports);
-        DisplayStatusCounts(status, procreports);
-        DisplayTypeCounts(reportType, procreports);
-        DisplayHighestPriorityApproved(unitName, reportType, priority, score, status, procreports);
-        DisplayAverageByPriority(priority, score, procreports);
+        int numOfValidReports = ProcessReports(unitName, reportType, priority, score, status, data);
+        Console.WriteLine($"Processing complete.\nValid records: {numOfValidReports}.\nInvalid records: {data.Length - numOfValidReports}");
+        DisplayBasicStatistics(score, numOfValidReports);
+        DisplayStatusCounts(status, numOfValidReports);
+        DisplayTypeCounts(reportType, numOfValidReports);
+        DisplayHighestPriorityApproved(unitName, reportType, priority, score, status, numOfValidReports);
+        DisplayAverageByPriority(priority, score, numOfValidReports);
     }
 } 
