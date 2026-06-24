@@ -319,6 +319,32 @@ class ReportAnalyzer
         return count;
     }
 
+
+    static void DisplayHighestPriorityApproved(string[] unitName, ReportType[] reportType, int[] priority, double[] score, Status[] status, int numOfReports)
+    {
+        int maxPriorityindex = 0;
+        Console.WriteLine($"===Display Approved status And Highes Priority===");
+        for (int i = 0; i < numOfReports; i++)
+        {
+            if (status[i] == Status.Approved)
+            {
+               if (priority[i] >= priority[maxPriorityindex])
+                {
+                    maxPriorityindex = i;
+                }
+            }
+        }
+        Console.WriteLine($"""
+            Unit Name: {unitName[maxPriorityindex]},
+            Report Type: {reportType[maxPriorityindex]},
+            Priority: {priority[maxPriorityindex]},
+            Score: {score[maxPriorityindex]}
+
+            """);
+
+    }
+
+
     static void Main()
     {
         const string path = "C:\\Users\\Yonil\\kodkod_megamot_11\\megamot_project\\megamot_project\\reports.txt";
@@ -339,6 +365,6 @@ class ReportAnalyzer
         DisplayBasicStatistics(score, procreports);
         DisplayStatusCounts(status, procreports);
         DisplayTypeCounts(reportType, procreports);
-
+        DisplayHighestPriorityApproved(unitName, reportType, priority, score, status, procreports);
     }
 } 
