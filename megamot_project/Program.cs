@@ -266,6 +266,7 @@ class ReportAnalyzer
     static void DisplayBasicStatistics(double[] score, int numOfReports)
     {
         Console.WriteLine($"""
+
             ===Display Basic Stats===
             There are 3 Reports:
             Average Score: {CalculateAverage(score, numOfReports):F2}
@@ -275,8 +276,8 @@ class ReportAnalyzer
             """);
     }
 
-
-    static void sCounts(Status[] statusArray, int numOfReports)
+    //display status counts
+    static void DisplayStatusCounts(Status[] statusArray, int numOfReports)
     {
         Console.WriteLine($"""
             ===Display Count Status===
@@ -284,6 +285,21 @@ class ReportAnalyzer
             Status Approved: {CountByStatus(Status.Approved, statusArray, numOfReports)}
             Status Pending: {CountByStatus(Status.Pending, statusArray, numOfReports)}
             Status Rejected: {CountByStatus(Status.Rejected, statusArray, numOfReports)}
+
+            """);
+    }
+
+
+    //display report type counts
+    static void DisplayTypeCounts(ReportType[] reportTypeArray, int numOfReports)
+    {
+        Console.WriteLine($"""
+            ===Display Count Report Types===
+            There are 4 report types:
+            Report Type Approved: {CountByType(ReportType.Analyze, reportTypeArray, numOfReports)}
+            Report Type Pending: {CountByType(ReportType.Collect, reportTypeArray, numOfReports)}
+            Report Type Rejected: {CountByType(ReportType.Intel, reportTypeArray, numOfReports)}
+            Report Type Rejected: {CountByType(ReportType.Recon, reportTypeArray, numOfReports)}
 
             """);
     }
@@ -321,8 +337,8 @@ class ReportAnalyzer
         int procreports = ProcessReports(unitName, reportType, priority, score, status, data);
         Console.WriteLine($"Processing complete.\nValid records: {procreports}.\nInvalid records: {data.Length - procreports}");
         DisplayBasicStatistics(score, procreports);
-        sCounts(status, procreports);
-        Console.WriteLine(CountByType(ReportType.Recon, reportType, procreports));
+        DisplayStatusCounts(status, procreports);
+        DisplayTypeCounts(reportType, procreports);
 
     }
 } 
