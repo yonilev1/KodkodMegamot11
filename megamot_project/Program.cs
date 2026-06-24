@@ -249,6 +249,17 @@ class ReportAnalyzer
         return count;
     }
 
+    static void DisplayBasicStatistics(double[] score, int numOfReports)
+    {
+        Console.WriteLine($"""
+            ===Display Basic Stats===
+            There are 3 Reports:
+            Average Score: {CalculateAverage(score, numOfReports):F2}
+            Max Score: {FindMaxScore(score, numOfReports)}
+            Min Score: {FindMinScore(score, numOfReports)}
+            """);
+    }
+
 
     //count how many by type
     static int CountByType(ReportType reporttype, ReportType[] reportTypes, int numOfReports)
@@ -281,9 +292,7 @@ class ReportAnalyzer
         }
         int procreports = ProcessReports(unitName, reportType, priority, score, status, data);
         Console.WriteLine($"Processing complete.\nValid records: {procreports}.\nInvalid records: {data.Length - procreports}");
-        Console.WriteLine(CalculateAverage(score, procreports));
-        Console.WriteLine(FindMaxScore(score, procreports));
-        Console.WriteLine(FindMinScore(score, procreports));
+        DisplayBasicStatistics(score, procreports);
         Console.WriteLine(CountByStatus(Status.Rejected, status, procreports));
         Console.WriteLine(CountByType(ReportType.Recon, reportType, procreports));
 
