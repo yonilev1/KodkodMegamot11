@@ -163,6 +163,7 @@ class ReportAnalyzer
         return false;
     }
 
+    //manage all processing. validation and the actual process. returns number of validated processed lines
     static int ProcessReports(string[] unitName, ReportType[] reportType, int[] priority, double[] score, Status[] status,string[] data)
     {
         string[][] spliteLines = splitTheData(data);
@@ -191,6 +192,11 @@ class ReportAnalyzer
         return count;
     }
 
+
+    static double CalculateAverage(double[] score, int numOfReports)
+    {
+        return score.Sum() / numOfReports;
+    }
     static void Main()
     {
         const string path = "C:\\Users\\Yonil\\kodkod_megamot_11\\megamot_project\\megamot_project\\reports.txt";
@@ -203,11 +209,12 @@ class ReportAnalyzer
         string[] data = LoadFile(path, MAX_REPORTS);
         if (data == null)
         {
-            Console.WriteLine($"Error: File {path} not found.");
+            Console.WriteLine($"Error: File {Path.GetFileName(path)} not found.");
             return;
         }
         int procreports = ProcessReports(unitName, reportType, priority, score, status, data);
         Console.WriteLine($"Processing complete.\nValid records: {procreports}.\nInvalid records: {data.Length - procreports}");
+        Console.WriteLine(CalculateAverage(score, procreports));
 
     }
-}
+} 
