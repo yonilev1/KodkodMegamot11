@@ -25,3 +25,4 @@ Victor,analyze,4,82.3,Approved
 Whiskey,Collect,3,  75.5  ,Approved
 Yankee,Intel,3,100.0,Approved
 Zulu,Recon,1,0.0,Rejected
+Displaying reports.txt.

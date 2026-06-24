@@ -194,19 +194,19 @@ class ReportAnalyzer
 
 
     //calculate avarage score
-    static double CalculateAverage(double[] score, int numOfReports)
+    static string CalculateAverage(double[] score, int numOfReports)
     {
         double sum = 0;
         for(int i = 0; i < numOfReports; i++)
         {
             sum += score[i];
         }
-        return sum / numOfReports;
+        return (numOfReports > 0) ? (sum / numOfReports).ToString("F2") : "No Reports.";
     }
 
 
     //find max score
-    static double FindMaxScore(double[] score, int numOfReports)
+    static string FindMaxScore(double[] score, int numOfReports)
     {
         double maxScore = 0;
         for (int i = 0; i < numOfReports; i++)
@@ -216,12 +216,12 @@ class ReportAnalyzer
                 maxScore = score[i];
             }
         }
-        return maxScore;
+        return (numOfReports > 0) ? maxScore.ToString("F2") : "No Reports.";
     }
 
 
     //find min score
-    static double FindMinScore(double[] score, int numOfReports)
+    static string FindMinScore(double[] score, int numOfReports)
     {
         double minScore = 100;
         for (int i = 0; i < numOfReports; i++)
@@ -231,7 +231,7 @@ class ReportAnalyzer
                 minScore = score[i];
             }
         }
-        return minScore;
+        return (numOfReports > 0) ? minScore.ToString("F2") : "No Reports.";
     }
 
 
@@ -256,7 +256,7 @@ class ReportAnalyzer
         Console.WriteLine($"""
 
             ===Display Basic Stats===
-            There are 3 Reports:
+            Basic Status reports:
             Average Score: {CalculateAverage(score, numOfReports):F2}
             Max Score: {FindMaxScore(score, numOfReports)}
             Min Score: {FindMinScore(score, numOfReports)}
@@ -269,7 +269,7 @@ class ReportAnalyzer
     {
         Console.WriteLine($"""
             ===Display Count Status===
-            There are 3 statues:
+            Count Status Reports:
             Status Approved: {CountByStatus(Status.Approved, statusArray, numOfReports)}
             Status Pending: {CountByStatus(Status.Pending, statusArray, numOfReports)}
             Status Rejected: {CountByStatus(Status.Rejected, statusArray, numOfReports)}
@@ -283,7 +283,7 @@ class ReportAnalyzer
     {
         Console.WriteLine($"""
             ===Display Count Report Types===
-            There are 4 report types:
+            Report Type reports:
             Report Type Approved: {CountByType(ReportType.Analyze, reportTypeArray, numOfReports)}
             Report Type Pending: {CountByType(ReportType.Collect, reportTypeArray, numOfReports)}
             Report Type Rejected: {CountByType(ReportType.Intel, reportTypeArray, numOfReports)}
