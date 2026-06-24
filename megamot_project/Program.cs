@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Net.NetworkInformation;
 
@@ -320,6 +321,7 @@ class ReportAnalyzer
     }
 
 
+    //display hgiest score with approved status
     static void DisplayHighestPriorityApproved(string[] unitName, ReportType[] reportType, int[] priority, double[] score, Status[] status, int numOfReports)
     {
         int maxPriorityindex = 0;
@@ -345,6 +347,59 @@ class ReportAnalyzer
     }
 
 
+
+    static void DisplayAverageByPriority(int[] priority, double[] score, int numOfReports)
+    {
+        Console.WriteLine($"===Display Average Score for each Priority===");
+        double average1 = 0;
+        double average2 = 0;
+        double average3 = 0;
+        double average4 = 0;
+        double average5 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        int count3 = 0;
+        int count4 = 0;
+        int count5 = 0;
+
+        for (int i = 0; i < numOfReports; i++)
+        {
+            if (priority[i] == 1)
+            {
+                average1 += score[i];
+                count1 += 1;
+            }
+            else if (priority[i] == 2)
+            {
+                average2 += score[i];
+                count2 += 1;
+            }
+            else if (priority[i] == 3)
+            {
+                average3 += score[i];
+                count3 += 1;
+            }
+            else if (priority[i] == 4)
+            {
+                average4 += score[i];
+                count4 += 1;
+            }
+            else
+            {
+                average5 += score[i];
+                count5 += 1;
+            }
+        }
+        Console.WriteLine($"""
+            Priority 1 Average Score: {(average1 / count1):F2}
+            Priority 2 Average Score: {(average2 / count2):F2}
+            Priority 3 Average Score: {(average3 / count3):F2}
+            Priority 4 Average Score: {(average4 / count4):F2}
+            Priority 5 Average Score: {(average5 / count5):F2}
+
+            """);
+    }
+
     static void Main()
     {
         const string path = "C:\\Users\\Yonil\\kodkod_megamot_11\\megamot_project\\megamot_project\\reports.txt";
@@ -366,5 +421,6 @@ class ReportAnalyzer
         DisplayStatusCounts(status, procreports);
         DisplayTypeCounts(reportType, procreports);
         DisplayHighestPriorityApproved(unitName, reportType, priority, score, status, procreports);
+        DisplayAverageByPriority(priority, score, procreports);
     }
 } 
