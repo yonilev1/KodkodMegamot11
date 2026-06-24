@@ -215,6 +215,20 @@ class ReportAnalyzer
         }
         return maxScore;
     }
+
+    static double FindMinScore(double[] score, int numOfReports)
+    {
+        double minScore = 100;
+        for (int i = 0; i < numOfReports; i++)
+        {
+            if (score[i] < minScore)
+            {
+                minScore = score[i];
+            }
+        }
+        return minScore;
+    }
+
     static void Main()
     {
         const string path = "C:\\Users\\Yonil\\kodkod_megamot_11\\megamot_project\\megamot_project\\reports.txt";
@@ -234,6 +248,7 @@ class ReportAnalyzer
         Console.WriteLine($"Processing complete.\nValid records: {procreports}.\nInvalid records: {data.Length - procreports}");
         Console.WriteLine(CalculateAverage(score, procreports));
         Console.WriteLine(FindMaxScore(score, procreports));
+        Console.WriteLine(FindMinScore(score, procreports));
 
     }
 } 
